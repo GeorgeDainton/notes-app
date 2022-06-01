@@ -1,7 +1,17 @@
-class notesView {
+class NotesView {
   constructor(notesModel) {
-    this.model = notesModel
-    this.mainContainerElement = document.querySelector('#main-container')
+    this.model = notesModel;
+    this.mainContainerElement = document.querySelector('#main-container');
+
+    document.querySelector('#submit-note').addEventListener('click', () => {
+      const newNote = document.querySelector('#new-note').value;
+      this.addNewNote(newNote);
+    });
+  }
+
+  addNewNote(newNote) {
+    this.model.addNote(newNote);
+    this.displayNotes();
   }
 
   displayNotes() {
@@ -11,10 +21,12 @@ class notesView {
       noteElement.innerText = note;
       noteElement.className = 'note';
       this.mainContainerElement.append(noteElement);
-
     });
-    
-  }
-}
 
-module.exports = notesView;
+
+  }
+  }
+
+
+
+module.exports = NotesView;
